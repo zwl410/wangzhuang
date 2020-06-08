@@ -12,7 +12,7 @@ public class XaConstant {
     /**
      * 用户状态常量类
      */
-    public static class UserStatus {
+    public static class Status {
         @ConstantName(type = "UserStatus", code = "lock", name = "锁定状态")
         public static final Integer lock = 0;
         @ConstantName(type = "UserStatus", code = "normal", name = "正常状态")

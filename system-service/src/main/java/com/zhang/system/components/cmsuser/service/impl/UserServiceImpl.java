@@ -5,8 +5,12 @@ import com.zhang.common.constant.XaConstant;
 import com.zhang.system.components.cmsuser.entity.XaCmsUser;
 import com.zhang.system.components.cmsuser.mapper.UserMapper;
 import com.zhang.system.components.cmsuser.service.UserService;
+import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @Auther: zhangsl
@@ -17,12 +21,16 @@ import org.springframework.stereotype.Service;
 @Service
 public class UserServiceImpl implements UserService {
 
-    private UserMapper userMapper;
+    private final UserMapper userMapper;
+
+    public UserServiceImpl(UserMapper userMapper) {
+        this.userMapper = userMapper;
+    }
 
     @Override
     public XaCmsUser getUserById(Long userId) {
         QueryWrapper<XaCmsUser> queryWrapper = new QueryWrapper();
-        queryWrapper.eq("id", userId).ne("status", XaConstant.UserStatus.delete);
+        queryWrapper.eq("id", userId).ne("status", XaConstant.Status.delete);
         XaCmsUser cmsUser = userMapper.selectOne(queryWrapper);
         return cmsUser;
     }

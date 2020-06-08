@@ -1,48 +1,49 @@
-#¶Ë¿ÚºÅ
+#ç«¯å£å·
 server:
   port: 8089
-
+swagger:
+  enable: true
 spring:
-  #  Êı¾İ¿âÁ¬½Ó
+  #  æ•°æ®åº“è¿æ¥
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://47.100.11.252:3306/ruiqinbus?useUnicode=true&characterEncoding=UTF-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.100.11.252:3306/wangzhuang?useUnicode=true&characterEncoding=UTF-8
     username: root
     password: zhang8645558
     type: com.alibaba.druid.pool.DruidDataSource
     druid:
-      # ÅäÖÃ¼à¿ØÍ³¼ÆÀ¹½ØµÄfilters£¬È¥µôºó¼à¿Ø½çÃæsqlÎŞ·¨Í³¼Æ£¬'wall'ÓÃÓÚ·À»ğÇ½
+      # é…ç½®ç›‘æ§ç»Ÿè®¡æ‹¦æˆªçš„filtersï¼Œå»æ‰åç›‘æ§ç•Œé¢sqlæ— æ³•ç»Ÿè®¡ï¼Œ'wall'ç”¨äºé˜²ç«å¢™
       filters: stat,wall,slf4j
-      #×î´óÁ¬½Ó³ØÊıÁ¿ maxIdleÒÑ¾­²»ÔÙÊ¹ÓÃ
+      #æœ€å¤§è¿æ¥æ± æ•°é‡ maxIdleå·²ç»ä¸å†ä½¿ç”¨
       maxActive: 20
-      #³õÊ¼»¯Ê±½¨Á¢ÎïÀíÁ¬½ÓµÄ¸öÊı
+      #åˆå§‹åŒ–æ—¶å»ºç«‹ç‰©ç†è¿æ¥çš„ä¸ªæ•°
       initialSize: 1
-      #»ñÈ¡Á¬½ÓÊ±×î´óµÈ´ıÊ±¼ä£¬µ¥Î»ºÁÃë
+      #è·å–è¿æ¥æ—¶æœ€å¤§ç­‰å¾…æ—¶é—´ï¼Œå•ä½æ¯«ç§’
       maxWait: 60000
-      #×îĞ¡Á¬½Ó³ØÊıÁ¿
+      #æœ€å°è¿æ¥æ± æ•°é‡
       minIdle: 1
-      #¼È×÷Îª¼ì²âµÄ¼ä¸ôÊ±¼äÓÖ×÷ÎªtestWhileIdelÖ´ĞĞµÄÒÀ¾İ
+      #æ—¢ä½œä¸ºæ£€æµ‹çš„é—´éš”æ—¶é—´åˆä½œä¸ºtestWhileIdelæ‰§è¡Œçš„ä¾æ®
       timeBetweenEvictionRunsMillis: 60000
-      #Ïú»ÙÏß³ÌÊ±¼ì²âµ±Ç°Á¬½ÓµÄ×îºó»î¶¯Ê±¼äºÍµ±Ç°Ê±¼ä²î´óÓÚ¸ÃÖµÊ±£¬¹Ø±Õµ±Ç°Á¬½Ó
+      #é”€æ¯çº¿ç¨‹æ—¶æ£€æµ‹å½“å‰è¿æ¥çš„æœ€åæ´»åŠ¨æ—¶é—´å’Œå½“å‰æ—¶é—´å·®å¤§äºè¯¥å€¼æ—¶ï¼Œå…³é—­å½“å‰è¿æ¥
       minEvictableIdleTimeMillis: 300000
-      #ÓÃÀ´¼ì²âÁ¬½ÓÊÇ·ñÓĞĞ§µÄsql ±ØĞëÊÇÒ»¸ö²éÑ¯Óï¾ä
-      #mysqlÖĞÎª select 'x'
-      #oracleÖĞÎª select 1 from dual
+      #ç”¨æ¥æ£€æµ‹è¿æ¥æ˜¯å¦æœ‰æ•ˆçš„sql å¿…é¡»æ˜¯ä¸€ä¸ªæŸ¥è¯¢è¯­å¥
+      #mysqlä¸­ä¸º select 'x'
+      #oracleä¸­ä¸º select 1 from dual
       validationQuery: select 'x'
-      #ÉêÇëÁ¬½ÓµÄÊ±ºò¼ì²â£¬Èç¹û¿ÕÏĞÊ±¼ä´óÓÚtimeBetweenEvictionRunsMillis£¬Ö´ĞĞvalidationQuery¼ì²âÁ¬½ÓÊÇ·ñÓĞĞ§¡£
+      #ç”³è¯·è¿æ¥çš„æ—¶å€™æ£€æµ‹ï¼Œå¦‚æœç©ºé—²æ—¶é—´å¤§äºtimeBetweenEvictionRunsMillisï¼Œæ‰§è¡ŒvalidationQueryæ£€æµ‹è¿æ¥æ˜¯å¦æœ‰æ•ˆã€‚
       testWhileIdle: true
-      #ÉêÇëÁ¬½ÓÊ±»áÖ´ĞĞvalidationQuery¼ì²âÁ¬½ÓÊÇ·ñÓĞĞ§,¿ªÆô»á½µµÍĞÔÄÜ,Ä¬ÈÏÎªtrue
+      #ç”³è¯·è¿æ¥æ—¶ä¼šæ‰§è¡ŒvalidationQueryæ£€æµ‹è¿æ¥æ˜¯å¦æœ‰æ•ˆ,å¼€å¯ä¼šé™ä½æ€§èƒ½,é»˜è®¤ä¸ºtrue
       testOnBorrow: false
-      #¹é»¹Á¬½ÓÊ±»áÖ´ĞĞvalidationQuery¼ì²âÁ¬½ÓÊÇ·ñÓĞĞ§,¿ªÆô»á½µµÍĞÔÄÜ,Ä¬ÈÏÎªtrue
+      #å½’è¿˜è¿æ¥æ—¶ä¼šæ‰§è¡ŒvalidationQueryæ£€æµ‹è¿æ¥æ˜¯å¦æœ‰æ•ˆ,å¼€å¯ä¼šé™ä½æ€§èƒ½,é»˜è®¤ä¸ºtrue
       testOnReturn: false
-      # ÊÇ·ñ»º´æpreparedStatement£¬Ò²¾ÍÊÇPSCache  ¹Ù·½½¨ÒéMySQLÏÂ½¨Òé¹Ø±Õ   ¸öÈË½¨ÒéÈç¹ûÏëÓÃSQL·À»ğÇ½ ½¨Òé´ò¿ª
+      # æ˜¯å¦ç¼“å­˜preparedStatementï¼Œä¹Ÿå°±æ˜¯PSCache  å®˜æ–¹å»ºè®®MySQLä¸‹å»ºè®®å…³é—­   ä¸ªäººå»ºè®®å¦‚æœæƒ³ç”¨SQLé˜²ç«å¢™ å»ºè®®æ‰“å¼€
       poolPreparedStatements: true
       maxOpenPreparedStatements: 20
-      #µ±Öµ´óÓÚ0Ê±poolPreparedStatements»á×Ô¶¯ĞŞ¸ÄÎªtrue
+      #å½“å€¼å¤§äº0æ—¶poolPreparedStatementsä¼šè‡ªåŠ¨ä¿®æ”¹ä¸ºtrue
       maxPoolPreparedStatementPerConnectionSize: 20
-      # Í¨¹ıconnectPropertiesÊôĞÔÀ´´ò¿ªmergeSql¹¦ÄÜ£»ÂıSQL¼ÇÂ¼
+      # é€šè¿‡connectPropertieså±æ€§æ¥æ‰“å¼€mergeSqlåŠŸèƒ½ï¼›æ…¢SQLè®°å½•
       connectionProperties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=5000
-      # ºÏ²¢¶à¸öDruidDataSourceµÄ¼à¿ØÊı¾İ
+      # åˆå¹¶å¤šä¸ªDruidDataSourceçš„ç›‘æ§æ•°æ®
       useGlobalDataSourceStat: true
   redis:
     database: 0
@@ -50,33 +51,43 @@ spring:
     port: 6379
     timeout: 2000
     password: redis252
-  # ====================MybatisPlus====================
-#mybatis-plus:
-#  # Èç¹ûÊÇ·ÅÔÚsrc/main/javaÄ¿Â¼ÏÂ classpath:/com/yourpackage/*/mapper/*Mapper.xml
-#  # Èç¹ûÊÇ·ÅÔÚresourceÄ¿Â¼ classpath:/mapper/*Mapper.xml
-#  mapper-locations: classpath*:com/frame/**/**.xml,classpath*:mapping/**/**.xml
-#  #ÊµÌåÉ¨Ãè£¬¶à¸öpackageÓÃ¶ººÅ»òÕß·ÖºÅ·Ö¸ô
-#  typeAliasesPackage: com.zhang.system.components.**.entity
-#  global-config:
-#    #Ë¢ĞÂmapper µ÷ÊÔÉñÆ÷
-#    db-config:
-#      #Ö÷¼üÀàĞÍ  0:"Êı¾İ¿âID×ÔÔö", 1:"ÓÃ»§ÊäÈëID",2:"È«¾ÖÎ¨Ò»ID (Êı×ÖÀàĞÍÎ¨Ò»ID)", 3:"È«¾ÖÎ¨Ò»ID UUID";
-#      id-type: 0
-#      #×Ö¶Î²ßÂÔ 0:"ºöÂÔÅĞ¶Ï",1:"·Ç NULL ÅĞ¶Ï"),2:"·Ç¿ÕÅĞ¶Ï"
+#====================MybatisPlus====================
+mybatis-plus:
+  # å¦‚æœæ˜¯æ”¾åœ¨src/main/javaç›®å½•ä¸‹ classpath:/com/yourpackage/*/mapper/*Mapper.xml
+  # å¦‚æœæ˜¯æ”¾åœ¨resourceç›®å½• classpath:/mapper/*Mapper.xml
+  #mapper-locations: classpath*:com/frame/**/**.xml,classpath*:mapping/**/**.xml
+  #å®ä½“æ‰«æï¼Œå¤šä¸ªpackageç”¨é€—å·æˆ–è€…åˆ†å·åˆ†éš”
+  typeAliasesPackage: com.zhang.system.components.**.entity
+  global-config:
+    #mybatis-plusçš„logo
+    banner: false
+    #åˆ·æ–°mapper è°ƒè¯•ç¥å™¨
+    db-config:
+      #ä¸»é”®ç±»å‹  0:"æ•°æ®åº“IDè‡ªå¢", 1:"ç”¨æˆ·è¾“å…¥ID",2:"å…¨å±€å”¯ä¸€ID (æ•°å­—ç±»å‹å”¯ä¸€ID)", 3:"å…¨å±€å”¯ä¸€ID UUID";
+      id-type: AUTO
+      #å­—æ®µç­–ç•¥ 0:"å¿½ç•¥åˆ¤æ–­",1:"é NULL åˆ¤æ–­"),2:"éç©ºåˆ¤æ–­"
 #      field-strategy: 2
-#      #ÍÕ·åÏÂ»®Ïß×ª»»
-#      column-underline: true
-#        #Êı¾İ¿â´óĞ´ÏÂ»®Ïß×ª»»
-#        #      capital-mode: true
-#      #Âß¼­É¾³ıÅäÖÃ
-#      logic-delete-value: 1
-#      logic-not-delete-value: 0
-#    refresh: true
-#  configuration:
-#    #ÅäÖÃ·µ»ØÊı¾İ¿â(columnÏÂ»®ÏßÃüÃû&&·µ»ØjavaÊµÌåÊÇÍÕ·åÃüÃû)£¬×Ô¶¯Æ¥ÅäÎŞĞèas£¨Ã»¿ªÆôÕâ¸ö£¬SQLĞèÒªĞ´as£º select user_id as userId£©
-#    map-underscore-to-camel-case: true
-#    cache-enabled: false
-#    #ÅäÖÃJdbcTypeForNull, oracleÊı¾İ¿â±ØĞëÅäÖÃ
+      #æ•°æ®åº“å¤§å†™ä¸‹åˆ’çº¿è½¬æ¢
+#      capital-mode: true
+      #æ•°æ®åº“å‰ç¼€
+      table-prefix: "tb_"
+      #é€»è¾‘åˆ é™¤é…ç½®
+      logic-delete-value: 3
+      logic-not-delete-value: 1
+  configuration:
+    #é…ç½®è¿”å›æ•°æ®åº“(columnä¸‹åˆ’çº¿å‘½å&&è¿”å›javaå®ä½“æ˜¯é©¼å³°å‘½å)ï¼Œè‡ªåŠ¨åŒ¹é…æ— éœ€asï¼ˆæ²¡å¼€å¯è¿™ä¸ªï¼ŒSQLéœ€è¦å†™asï¼š select user_id as userIdï¼‰
+    map-underscore-to-camel-case: true
+    cache-enabled: false
+    lazy-loading-enabled: false
+    #é…ç½®JdbcTypeForNull, oracleæ•°æ®åº“å¿…é¡»é…ç½®
 #    jdbc-type-for-null: 'null'
-#    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 #    database-id: mysql
+
+#====================jwt====================
+jwt:
+  header: Authorization
+  secret: mySecret
+  #tokenæœ‰æ•ˆæœŸ å•ä½ï¼šæ¯«ç§’ ä¸¤ä¸ªå°æ—¶
+  expiration: 7200000
+  tokenHead: "Bearer "

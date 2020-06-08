@@ -1,5 +1,6 @@
 package com.zhang.system.components.cmsuser.entity;
 
+import com.baomidou.mybatisplus.annotation.TableName;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -9,6 +10,7 @@ import java.io.Serializable;
 
 @Data
 @ApiModel(value = "用户信息类")
+@TableName(value = "tb_xa_cms_user")
 public class XaCmsUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
