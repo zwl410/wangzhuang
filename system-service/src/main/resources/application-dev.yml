@@ -1,0 +1,24 @@
+spring:
+  #  数据库连接
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://47.100.11.252:3306/wangzhuang?useUnicode=true&characterEncoding=UTF-8
+    username: root
+    password: zhang8645558
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      #最大连接池数量 maxIdle已经不再使用
+      maxActive: 20
+      #初始化时建立物理连接的个数
+      initialSize: 1
+      #获取连接时最大等待时间，单位毫秒
+      maxWait: 60000
+      #最小连接池数量
+      minIdle: 1
+  # redis 配置
+  redis:
+    database: 0
+    host: 47.100.11.252
+    port: 6379
+    timeout: 2000
+    password: redis252
