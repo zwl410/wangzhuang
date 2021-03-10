@@ -30,9 +30,9 @@ public class XaCmsUserServiceImpl implements XaCmsUserService {
     }
 
     @Override
-    public XaCmsUser getUserByNameAndStatusNot(String username, Integer status) {
+    public XaCmsUser getUserByPhoneAndStatusNot(String phone, Integer status) {
         QueryWrapper<XaCmsUser> queryWrapper = new QueryWrapper();
-        queryWrapper.eq("username", username).ne("status", status);
+        queryWrapper.eq("phone", phone).ne("status", status);
         XaCmsUser cmsUser = xaCmsUserMapper.selectOne(queryWrapper);
         return cmsUser;
     }

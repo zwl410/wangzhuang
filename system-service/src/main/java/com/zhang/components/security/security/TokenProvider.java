@@ -105,18 +105,6 @@ public class TokenProvider {
     }
 
     /**
-     * 从token中获取用户ID
-     *
-     * @param token
-     * @param base64Security
-     * @return
-     */
-    public String getUserId(String token, String base64Security) {
-        String userId = parseJWT(token, base64Security).get("userId", String.class);
-        return Base64Util.decode(userId);
-    }
-
-    /**
      * 是否已过期
      *
      * @param token

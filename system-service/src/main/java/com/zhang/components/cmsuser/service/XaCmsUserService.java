@@ -11,5 +11,5 @@ public interface XaCmsUserService {
 
     XaCmsUser getUserById(Long userId);
 
-    XaCmsUser getUserByNameAndStatusNot(String username,Integer status);
+    XaCmsUser getUserByPhoneAndStatusNot(String phone,Integer status);
 }

@@ -14,6 +14,7 @@ import com.zhang.components.security.entity.AuthUser;
 import com.zhang.components.security.entity.SelfUserDetail;
 import com.zhang.components.security.security.TokenProvider;
 import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.http.HttpStatus;
@@ -23,11 +24,9 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;
@@ -45,6 +44,7 @@ public class AuthorizationController {
     private final SecurityProperties properties;
     private final XaCmsUserService xaCmsUserService;
 
+    @ApiOperation("登录")
     @PostMapping("/login")
     public ResponseEntity<Object> login(@Validated @RequestBody AuthUser authUser) throws Exception {
         //解密密码
@@ -52,7 +52,7 @@ public class AuthorizationController {
         String code = String.valueOf(redisUtils.get(authUser.getUuid()));
         //删除code
         redisUtils.del(authUser.getUuid());
-        if (StringUtils.isBlank(code)) {
+        if (StringUtils.isBlank(code) || "null".equals(code)) {
             throw new BaseException("验证码不存在，或已过期，请刷新重试！");
         }
         if (StringUtils.isNotBlank(authUser.getCode()) && !code.equals(authUser.getCode())) {
@@ -64,24 +64,25 @@ public class AuthorizationController {
         SelfUserDetail userDetail = (SelfUserDetail) authentication.getPrincipal();
         // 生成令牌
         String token = tokenProvider.createToken(userDetail);
-        redisUtils.set(userDetail.getUsername(), token, properties.getExpiration());
-        Map result = new HashMap() {{
+        redisUtils.set(properties.getOnlineKey() + userDetail.getUsername(), token, properties.getExpiration(), TimeUnit.MILLISECONDS);
+        Map result = new HashMap(2) {{
             put("token", properties.getTokenHead() + token);
             put("expiration", properties.getExpiration());
-            put("user", userDetail);
         }};
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/info")
+    @ApiOperation("获取用户信息")
+    @GetMapping("/info")
     public ResponseEntity<Object> info() {
         final Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         SelfUserDetail userDetail = (SelfUserDetail) authentication.getPrincipal();
-        XaCmsUser cmsUser = xaCmsUserService.getUserByNameAndStatusNot(userDetail.getUsername(), XaConstant.Status.normal);
+        XaCmsUser cmsUser = xaCmsUserService.getUserByPhoneAndStatusNot(userDetail.getUsername(), XaConstant.Status.delete);
         return ResponseEntity.ok(cmsUser);
     }
 
-    @PostMapping("/code")
+    @ApiOperation("获取验证码")
+    @GetMapping("/code")
     public ResponseEntity<Object> code() {
         // 算术类型 https://gitee.com/whvse/EasyCaptcha
         ArithmeticCaptcha captcha = new ArithmeticCaptcha(111, 36);
@@ -98,7 +99,8 @@ public class AuthorizationController {
         return ResponseEntity.ok(result);
     }
 
-    @PostMapping("/layout")
+    @ApiOperation("退出")
+    @DeleteMapping("/layout")
     public ResponseEntity<Object> layout() {
         SecurityContextHolder.clearContext();
         return new ResponseEntity<>(HttpStatus.OK);

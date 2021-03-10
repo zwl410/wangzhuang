@@ -1,12 +1,10 @@
 package com.zhang.components.security.entity;
 
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.io.Serializable;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Set;
 import java.util.stream.Collectors;
 

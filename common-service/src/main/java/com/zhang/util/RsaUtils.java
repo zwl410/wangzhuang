@@ -16,22 +16,26 @@ import java.security.spec.X509EncodedKeySpec;
  */
 public class RsaUtils {
 
-    private static final String SRC = "123456";
+    private static final String SRC = "e10adc3949ba59abbe56e057f20f883e";
 
     public static void main(String[] args) throws Exception {
         RsaKeyPair rsaKeyPair = getInstanceKey();
-        System.out.println("公钥:" + rsaKeyPair.getPublicKey());
-        System.out.println("私钥:" + rsaKeyPair.getPrivateKey());
+//        String publicKey = rsaKeyPair.getPublicKey();
+//        String privateKey = rsaKeyPair.getPrivateKey();
+        String publicKey = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCGx4kN8MxDtqTtI0sClb8y8Abxzv2Z5j6QcvUth+RxRRuyio3M05Mag3LgK1TOY6a78y8qdTUEOuOQkNa9diq1A4aTx9S4POFrunaI9mAye57t2bCDsUdmRCuMJSI1iRIs16hUeRWe1G+qJvcTHgn7NmrE2hEUrQn6BOsRvNKlrwIDAQAB";
+        String privateKey = "MIICcwIBADANBgkqhkiG9w0BAQEFAASCAl0wggJZAgEAAoGBAIbHiQ3wzEO2pO0jSwKVvzLwBvHO/ZnmPpBy9S2H5HFFG7KKjczTkxqDcuArVM5jprvzLyp1NQQ645CQ1r12KrUDhpPH1Lg84Wu6doj2YDJ7nu3ZsIOxR2ZEK4wlIjWJEizXqFR5FZ7Ub6om9xMeCfs2asTaERStCfoE6xG80qWvAgMBAAECf10vmJMK6i/nGCDdRf+Dia6uRh7p/m1pw9gbo2jXjBrErWHEakY0AoFSYRqc2wXX4HASs4mngABstuo9OjvEd8GuEYJT7upxMnyMY74NL5v2PvXGMzNu/WYkWd2tUFmaMKxuy7PJ2l4cq5yEOh3kY4zIeksKH0MfJE85r0o/n8kCQQDIiPS5tHamB6xWMYb0WpHpMEgFmITU+/lRiJ9xujIHwQPDJ/D83XS9kd3hgv2c2f7uRALqPpQ86V6b2tKeAxOlAkEArA60LU4vsLiV0OxcfRA+AgJJO/9xpoEukKXOSZB4x2fnGClp3zZ+BubgP+bf0XNS0BDzz2cJfI9Zy2wQ7zTDwwJAekaQOn/gbOJ24eO3L13eZHrNH6RdMmUmI+ITnsvy36mAesnq9rSuDz1XNr+hlreR64TK5jwcNXvy9UObcz/bBQJAbFRpryjOMBdYBI39AaUrVXp4/7SqquolFl++zWSQFwTdZMIWbbrSiKfuw20quKZCmsxBpfE68NkU8VZeJy3ynwJAYMkBc6l/4S4wS5NjApW4IAaC/w4LVfWxhgTE3iil97krY4LabZ7qlPNzCt7pjANZu3CcvWqJ6WR3QbBtPWnm4w==";
+        System.out.println("公钥:" + publicKey);
+        System.out.println("私钥:" + privateKey);
         System.out.println("\n要加密的数据：" + SRC + "");
         System.out.println("\n###############公钥加密-私钥解密################");
-        String encryptPublic = encryptByPublicKey(rsaKeyPair.getPublicKey(), SRC);
+        String encryptPublic = encryptByPublicKey(publicKey, SRC);
         System.out.println("加密的结果:" + encryptPublic);
-        String decryptPrivate = decryptByPrivateKey(rsaKeyPair.getPrivateKey(), encryptPublic);
+        String decryptPrivate = decryptByPrivateKey(privateKey, encryptPublic);
         System.out.println("解密的结果:" + decryptPrivate);
         System.out.println("\n###############私钥加密-公钥解密################");
-        String encryptPrivate = encryptByPrivateKey(rsaKeyPair.getPrivateKey(), SRC);
+        String encryptPrivate = encryptByPrivateKey(privateKey, SRC);
         System.out.println("加密的结果:" + encryptPrivate);
-        String decryptPublic = decryptByPublicKey(rsaKeyPair.getPublicKey(), encryptPrivate);
+        String decryptPublic = decryptByPublicKey(publicKey, encryptPrivate);
         System.out.println("解密的结果:" + decryptPublic);
     }
 
@@ -93,7 +97,7 @@ public class RsaUtils {
         Cipher cipher = Cipher.getInstance(keyFactory.getAlgorithm());
         cipher.init(Cipher.ENCRYPT_MODE, privateKey);
         byte[] result = cipher.doFinal(text.getBytes());
-        return   Base64.encodeBase64String(result);
+        return Base64.encodeBase64String(result);
     }
 
 

@@ -24,16 +24,14 @@ public class XaCmsUser implements Serializable {
     private String createUser;
     @ApiModelProperty(name = "状态，0:锁定，1:正常，9:删除")
     private Integer status;
-    @ApiModelProperty(name = "登录用户名")
-    private String username;
+    @ApiModelProperty(name = "手机号")
+    private String phone;
     @ApiModelProperty(name = "登录密码")
     private String password;
     @ApiModelProperty(name = "昵称")
     private String nickName;
     @ApiModelProperty(name = "真实姓名")
     private String realName;
-    @ApiModelProperty(name = "手机号")
-    private Integer phone;
     @ApiModelProperty(name = "邮箱")
     private String email;
     @ApiModelProperty(name = "住址")

@@ -29,6 +29,12 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
 
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
+       
+//        response.setHeader("Access-Control-Allow-Origin", request.getHeader("Origin"));
+//        response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+//        response.setHeader("Access-Control-Max-Age", "3600");
+//        response.setHeader("Access-Control-Allow-Headers", "x-requested-with, content-type, accept");
+//        response.setHeader("Access-Control-Allow-Credentials", "true"); //是否支持cookie跨域
         //请求头中的token信息
         String authHeader = request.getHeader(properties.getHeader());
         if (authHeader != null && authHeader.startsWith(properties.getTokenHead())) {
@@ -36,7 +42,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
             String username = tokenProvider.getUsername(authToken, properties.getBase64Secret());
             if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
                 //验证token
-                if (tokenProvider.validateToken(authToken)) {
+                if (tokenProvider.validateToken(properties.getOnlineKey() + username)) {
                     //验证token和用户
                     SelfUserDetail userDetails = (SelfUserDetail) userDetailsService.loadUserByUsername(username);
                     if (tokenProvider.validateToken(authToken, properties.getBase64Secret(), userDetails)) {

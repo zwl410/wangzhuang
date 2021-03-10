@@ -28,7 +28,7 @@ mybatis-plus:
     #配置返回数据库(column下划线命名&&返回java实体是驼峰命名)，自动匹配无需as（没开启这个，SQL需要写as： select user_id as userId）
     map-underscore-to-camel-case: true
     #配置JdbcTypeForNull, oracle数据库必须配置
-#    jdbc-type-for-null: 'null'
+    #    jdbc-type-for-null: 'null'
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 #    database-id: mysql
 
@@ -51,5 +51,6 @@ jwt:
   #token有效期 单位：毫秒 两个小时
   expiration: 7200000
   tokenHead: "Bearer "
-  codeKey: "code-key—"
-  codeExpiration: 3600
+  onlineKey: "online-user-key-"
+  codeKey: "code-key-"
+  codeExpiration: 60000

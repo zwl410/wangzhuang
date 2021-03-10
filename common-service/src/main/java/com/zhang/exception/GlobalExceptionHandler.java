@@ -1,6 +1,7 @@
 package com.zhang.exception;
 
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.MissingPathVariableException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
@@ -22,7 +23,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
     public ResponseEntity<Object> baseException(Exception e) {
         log.error(e.getMessage());
-        return ResponseEntity.ok(ErrorResult.error(e.getMessage()));
+        ErrorResult result= ErrorResult.error(e.getMessage());
+        return new ResponseEntity(result,HttpStatus.valueOf(result.getStatus()));
     }
 
     /**
@@ -34,7 +36,8 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<Object> baseRuntimeException(RuntimeException e) {
         log.error(e.getMessage());
-        return ResponseEntity.ok(ErrorResult.error(e.getMessage()));
+        ErrorResult result= ErrorResult.error(e.getMessage());
+        return new ResponseEntity(result,HttpStatus.valueOf(result.getStatus()));
     }
 
     /**
@@ -52,7 +55,8 @@ public class GlobalExceptionHandler {
             errorMsg = "path参数缺失异常：" + errorMsg;
         }
         log.error(errorMsg);
-        return ResponseEntity.ok(ErrorResult.error(e.getMessage()));
+        ErrorResult result= ErrorResult.error(e.getMessage());
+        return new ResponseEntity(result,HttpStatus.valueOf(result.getStatus()));
     }
 
     /**
@@ -64,6 +68,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(BaseException.class)
     public ResponseEntity<Object> baseBaseException(BaseException e) {
         log.error(e.getMessage());
-        return ResponseEntity.ok(ErrorResult.error(e.getMessage()));
+        ErrorResult result= ErrorResult.error(e.getMessage());
+        return new ResponseEntity(result,HttpStatus.valueOf(result.getStatus()));
     }
 }
