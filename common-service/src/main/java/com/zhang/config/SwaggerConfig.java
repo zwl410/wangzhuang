@@ -25,6 +25,10 @@ public class SwaggerConfig {
     @Value("${swagger.enable}")
     private boolean enable;
 
+    /**
+     * http://localhost:8089/doc.html
+     * @return
+     */
     @Bean
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)

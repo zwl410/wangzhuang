@@ -15,7 +15,7 @@ public class XaCmsUser implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @NotNull(message = "ID不能为空",groups = Update.class)
+    @NotNull(message = "ID不能为空")
     @ApiModelProperty(name = "唯一标识",required = true)
     private Long userId;
     @ApiModelProperty(name = "创建时间")
@@ -41,5 +41,4 @@ public class XaCmsUser implements Serializable {
     @ApiModelProperty(name = "用户描述")
     private String description;
 
-    public @interface Update {}
 }

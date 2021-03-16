@@ -72,6 +72,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 ).permitAll()
                 // swagger 文档
                 .antMatchers("/swagger-ui.html").permitAll()
+                .antMatchers("/doc.html").permitAll()
                 .antMatchers("/swagger-resources/**").permitAll()
                 .antMatchers("/webjars/**").permitAll()
                 .antMatchers("/*/api-docs").permitAll()
@@ -85,8 +86,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // 登录接口
                 .antMatchers("/auth/login").permitAll()
                 .antMatchers("/auth/code").permitAll()
+                .antMatchers("/").permitAll()
                 // 其他请求都需要认证后才能访问
-                .anyRequest().authenticated();
+                .anyRequest().permitAll();
     }
 
     @Bean

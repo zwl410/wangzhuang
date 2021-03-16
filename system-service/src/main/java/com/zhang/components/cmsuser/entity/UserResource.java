@@ -1,6 +1,7 @@
 package com.zhang.components.cmsuser.entity;
 
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.zhang.base.entity.BaseEntity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
@@ -10,12 +11,8 @@ import java.io.Serializable;
 @Data
 @ApiModel("角色资源信息")
 @TableName("tb_xa_cms_resource")
-public class UserResource implements Serializable {
+public class UserResource extends BaseEntity {
 
-    @ApiModelProperty(name = "唯一标识",required = true)
-    private Long id;
-    @ApiModelProperty(name = "状态，0:锁定，1:正常，9:删除")
-    private Integer status;
     @ApiModelProperty(name = "排序")
     private Integer sort;
     @ApiModelProperty(name = "上级菜单")
