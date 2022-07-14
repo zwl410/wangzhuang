@@ -7,8 +7,8 @@ import com.zhang.constant.XaConstant;
 import com.zhang.exception.BaseException;
 import com.zhang.util.RedisUtils;
 import com.zhang.util.RsaUtils;
-import com.zhang.components.cmsuser.entity.XaCmsUser;
-import com.zhang.components.cmsuser.service.XaCmsUserService;
+import com.zhang.components.business.entity.XaCmsUser;
+import com.zhang.components.business.service.XaCmsUserService;
 import com.zhang.components.security.config.SecurityProperties;
 import com.zhang.components.security.entity.AuthUser;
 import com.zhang.components.security.entity.SelfUserDetail;
@@ -26,7 +26,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.TimeUnit;

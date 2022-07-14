@@ -20,15 +20,19 @@
         <module>system-service</module>
     </modules>
 
-    <name>汪庄村展示系统</name>
+    <name>汪庄展示系统</name>
     <url>http://wangzhuangcun.cn/</url>
 
     <properties>
         <druid.version>1.1.10</druid.version>
         <fastjson.version>1.2.54</fastjson.version>
-        <mybatispuls.version>3.1.0</mybatispuls.version>
+        <mybatis-puls.version>3.1.0</mybatis-puls.version>
+        <mybatis-plus-generator.version>3.4.1</mybatis-plus-generator.version>
+        <velocity.version>2.0</velocity.version>
         <commons-pool2.version>2.5.0</commons-pool2.version>
         <swagger.version>2.9.2</swagger.version>
+        <drools.version>7.6.0.Final</drools.version>
+        <joda-time.version>2.10.5</joda-time.version>
     </properties>
 
     <dependencies>
@@ -102,8 +106,29 @@
         <dependency>
             <groupId>com.baomidou</groupId>
             <artifactId>mybatis-plus-boot-starter</artifactId>
-            <version>${mybatispuls.version}</version>
+            <version>${mybatis-puls.version}</version>
         </dependency>
+        <!-- mybatis-plus 自动生成代码 -->
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-generator</artifactId>
+            <version>${mybatis-plus-generator.version}</version>
+        </dependency>
+        <!-- velocity -->
+        <dependency>
+            <groupId>org.apache.velocity</groupId>
+            <artifactId>velocity-engine-core</artifactId>
+            <version>${velocity.version}</version>
+        </dependency>
+
+        <!-- 日期库 -->
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>${joda-time.version}</version>
+        </dependency>
+
+        <!-- 代码自动生成依赖 end-->
         <!--  swagger  -->
         <dependency>
             <groupId>io.springfox</groupId>
@@ -129,6 +154,52 @@
             <artifactId>knife4j-spring-boot-starter</artifactId>
             <version>2.0.4</version>
         </dependency>
+
+        <!-- Drools规则引擎 -->
+        <dependency>
+            <groupId>org.drools</groupId>
+            <artifactId>drools-core</artifactId>
+            <version>${drools.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.drools</groupId>
+            <artifactId>drools-compiler</artifactId>
+            <version>${drools.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.drools</groupId>
+            <artifactId>drools-templates</artifactId>
+            <version>${drools.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kie</groupId>
+            <artifactId>kie-api</artifactId>
+            <version>${drools.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.kie</groupId>
+            <artifactId>kie-spring</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-tx</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-beans</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-core</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.springframework</groupId>
+                    <artifactId>spring-context</artifactId>
+                </exclusion>
+            </exclusions>
+            <version>${drools.version}</version>
+        </dependency>
+
     </dependencies>
     <!--ali maven镜像-->
     <repositories>

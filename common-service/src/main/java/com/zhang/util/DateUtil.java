@@ -20,7 +20,7 @@ import java.util.GregorianCalendar;
  * @modified date
  * @since JDK1.7
  */
-public class DateUtil {
+public class DateUtil extends cn.hutool.core.date.DateUtil {
     private static final Log logger = LogFactory.getLog(DateUtil.class);
     private static String defaultDatePattern = null;
     private static String timePattern = "HH:mm";

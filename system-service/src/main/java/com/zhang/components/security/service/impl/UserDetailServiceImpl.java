@@ -1,10 +1,10 @@
 package com.zhang.components.security.service.impl;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.zhang.components.cmsuser.mapper.UserResourceMapper;
-import com.zhang.components.cmsuser.mapper.XaCmsUserMapper;
+import com.zhang.components.business.mapper.UserResourceMapper;
+import com.zhang.components.business.mapper.XaCmsUserMapper;
 import com.zhang.components.security.entity.SelfUserDetail;
-import com.zhang.components.cmsuser.entity.XaCmsUser;
+import com.zhang.components.business.entity.XaCmsUser;
 import com.zhang.constant.XaConstant;
 import com.zhang.constant.vo.UserMenuVo;
 import lombok.RequiredArgsConstructor;
