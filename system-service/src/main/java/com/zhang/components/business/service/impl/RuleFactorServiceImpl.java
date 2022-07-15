@@ -20,13 +20,22 @@ public class RuleFactorServiceImpl extends ServiceImpl<RuleFactorMapper, RuleFac
     private final RuleService ruleService;
 
     @Override
-    public void rule() {
-        List<RuleFactor> factorList = list();
+    public String rule(String value) {
+//        List<RuleFactor> factorList = list();
 
         RuleFactorVo factorVo = new RuleFactorVo();
-        factorVo.setProperty(20f);
+        factorVo.setProperty(Float.valueOf(value));
         factorVo = ruleService.ruleFactor(factorVo);
 
-        System.out.println(factorVo);
+        return factorVo.getLevel();
+    }
+
+    @Override
+    public String rule1(String value) {
+        RuleFactorVo factorVo = new RuleFactorVo();
+        factorVo.setRuleFactorNo(value);
+        factorVo = ruleService.ruleFactor(factorVo);
+
+        return factorVo.getLevel();
     }
 }

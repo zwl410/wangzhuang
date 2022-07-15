@@ -1,0 +1,10 @@
+package ruleStr
+
+import com.zhang.constant.vo.RuleFactorVo
+
+rule "rule_str_1"
+    when
+        $factor: RuleFactorVo(ruleFactorNo.equals('A'))
+    then
+        $factor.setLevel("匹配成功");
+end

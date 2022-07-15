@@ -5,5 +5,7 @@ import com.zhang.components.business.entity.RuleFactor;
 
 public interface RuleFactorService extends IService<RuleFactor> {
 
-    void rule();
+    String rule(String value);
+
+    String rule1(String value);
 }

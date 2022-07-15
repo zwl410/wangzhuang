@@ -36,6 +36,7 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(RuntimeException.class)
     public ResponseEntity<Object> baseRuntimeException(RuntimeException e) {
         log.error(e.getMessage());
+        e.printStackTrace();
         ErrorResult result= ErrorResult.error(e.getMessage());
         return new ResponseEntity(result,HttpStatus.valueOf(result.getStatus()));
     }

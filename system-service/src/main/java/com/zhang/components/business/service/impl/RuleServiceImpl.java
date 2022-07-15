@@ -5,6 +5,7 @@ import com.zhang.constant.vo.RuleFactorVo;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.kie.api.KieBase;
+import org.kie.api.definition.KiePackage;
 import org.kie.api.runtime.KieSession;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +24,7 @@ public class RuleServiceImpl implements RuleService {
 
     @Override
     public RuleFactorVo ruleFactor(RuleFactorVo factor){
+//       KiePackage kiePackage = kieBase.getKiePackage()
         KieSession kieSession = kieBase.newKieSession();
         kieSession.insert(factor);
         kieSession.fireAllRules();

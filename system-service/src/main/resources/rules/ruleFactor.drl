@@ -1,5 +1,10 @@
-// 图书优惠规则
-import com.zhang.constant.vo.RuleFactorVo
+//因子 报警规则
+package ruleFactor //包名，只限于逻辑上的管理，同一个包名下的查询或者函数可以直接调用
+
+import com.zhang.constant.vo.RuleFactorVo //导入类或者静态方法
+
+global com.zhang.components.business.service.XaCmsUserService userService //定义一个JavaBean类型的全局变量
+
 //支持的 符号
 //>	    大于
 //<	    小于
@@ -13,14 +18,14 @@ import com.zhang.constant.vo.RuleFactorVo
 //not memberOf	判断一个Fact对象的某个属性是否不在一个或多个集合中
 //matches	判断一个Fact对象的属性是否与提供的标准的Java正则表达式进行匹配
 //not matches	判断一个Fact对象的属性是否不与提供的标准的Java正则表达式进行匹配
-
-global com.zhang.components.business.service.XaCmsUserService userService //定义一个JavaBean类型的全局变量
-
-// 规则一：温度在 20～25度 正常
+//in  / not in
+//eval(true)
+//exists
+//规则一：温度在 20～25度 正常
 rule "rule_factor_1"
     //enabled true //用于指定当前规则是否启用，如果设置的值为false则当前规则无论是否匹配成功都不会触发
-    //salience 1 //优先级
-    //no-loop true //用于防止死循环 重复调用不会执行
+    salience 3 //优先级
+    no-loop true //用于防止死循环 重复调用不会执行
     //timer (cron:0/1 * * * * ?) //定时 含义：每隔1秒触发一次
     //指定规则的生效时间，即只有当前系统时间大于等于设置的时间或者日期规则才有可能触发。默认日期格式为：dd-MMM-yyyy 。自定义日期格式。System.setProperty("drools.dateformat","yyyy-MM-dd HH:mm:ss");
     //date-effective "2020-10-01 10:00"
@@ -28,26 +33,30 @@ rule "rule_factor_1"
     when
         $factor: RuleFactorVo(property >= 20 && property <= 25) // 匹配模式，到规则引擎中（工作内存）查找RuleFactor对象，命名为$factor
     then
-        $factor.setLevel("ok");
-        System.out.println(userService.getUserById(1l));
+        $factor.setLevel("温度在20～25之间 正常");
+//        System.out.println(userService.getUserById(1l));
         System.out.println("温度在20～25之间 正常");
-		//drools.halt();//立即终止后面所有规则执行
+		drools.halt();//立即终止后面所有规则执行
 end
-
-// 规则二：温度在 10～20度 or 25～40 触发报警
+//规则二：温度在 10～20度 or 25～40 触发报警
 rule "rule_factor_2"
+    salience 2
+    no-loop true
     when
         $factor: RuleFactorVo((property >= 10 && property < 20) || (property > 25 && property <= 40))
     then
-        $factor.setLevel("v1");
+        $factor.setLevel("温度在10～20 or 25~40之间 触发警报系统");
         System.out.println("温度在10～20 or 25~40之间 触发警报系统");
+        drools.halt();
 end
-
-// 规则三：温度在 小于10 or 大于40 触发报警+新风
+//规则三：温度在 小于10 or 大于40 触发报警+新风
 rule "rule_factor_3"
+    salience 1
+    no-loop true
     when
         $factor: RuleFactorVo(property < 10 || property > 40)
     then
-        $factor.setLevel("v2");
+        $factor.setLevel("温度小于10 or 大于40 触发警报系统+开启新风装置");
         System.out.println("温度小于10 or 大于40 触发警报系统+开启新风装置");
+		drools.halt();
 end
