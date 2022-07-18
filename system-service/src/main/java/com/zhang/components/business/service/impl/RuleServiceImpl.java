@@ -20,15 +20,15 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class RuleServiceImpl implements RuleService {
 
-    private final KieBase kieBase;
+//    private final KieBase kieBase;
 
     @Override
     public RuleFactorVo ruleFactor(RuleFactorVo factor){
 //       KiePackage kiePackage = kieBase.getKiePackage()
-        KieSession kieSession = kieBase.newKieSession();
+        /*KieSession kieSession = kieBase.newKieSession();
         kieSession.insert(factor);
         kieSession.fireAllRules();
-        kieSession.dispose();
+        kieSession.dispose();*/
         return factor;
     }
 

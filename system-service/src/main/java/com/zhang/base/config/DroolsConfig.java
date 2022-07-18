@@ -1,3 +1,4 @@
+/*
 package com.zhang.base.config;
 
 import org.kie.api.KieBase;
@@ -17,12 +18,14 @@ import org.springframework.core.io.Resource;
 
 import java.io.IOException;
 
+*/
 /**
  * @Author: zhang
  * @Date: 2022年07月14日
  * @Description: 规则引擎配置类
  * @Version: 1.0
- */
+ *//*
+
 @Configuration
 public class DroolsConfig {
     //指定规则文件存放的目录
@@ -65,4 +68,4 @@ public class DroolsConfig {
     public KModuleBeanFactoryPostProcessor kiePostProcessor() {
         return new KModuleBeanFactoryPostProcessor();
     }
-}
+}*/

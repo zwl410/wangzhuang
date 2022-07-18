@@ -31,7 +31,8 @@
         <velocity.version>2.0</velocity.version>
         <commons-pool2.version>2.5.0</commons-pool2.version>
         <swagger.version>2.9.2</swagger.version>
-        <drools.version>7.6.0.Final</drools.version>
+        <knife4j.version>2.0.9</knife4j.version>
+        <drools.version>7.69.0.Final</drools.version>
         <joda-time.version>2.10.5</joda-time.version>
     </properties>
 
@@ -152,7 +153,7 @@
         <dependency>
             <groupId>com.github.xiaoymin</groupId>
             <artifactId>knife4j-spring-boot-starter</artifactId>
-            <version>2.0.4</version>
+            <version>${knife4j.version}</version>
         </dependency>
 
         <!-- Drools规则引擎 -->
