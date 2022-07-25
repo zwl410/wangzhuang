@@ -2,7 +2,7 @@ spring:
   #  数据库连接
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://114.215.139.145:3306/wz_test?useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://114.215.139.145:3306/wz_test?useSSL=false&useUnicode=true&characterEncoding=UTF-8
     username: root
     password: Zh123456
     type: com.alibaba.druid.pool.DruidDataSource

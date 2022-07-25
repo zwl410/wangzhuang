@@ -4,7 +4,7 @@ import com.zhang.constant.vo.RuleParams
 
 rule "rule_str_1"
     when
-        $factor: RuleParams(parmaStr contains "ABC")
+        $factor: RuleParams(parmaStr.equals("ABC"))
     then
         $factor.setResult("匹配成功");
 end

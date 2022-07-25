@@ -48,10 +48,10 @@ public class DroolsRuleServiceImpl extends ServiceImpl<DroolsRuleMapper, DroolsR
 
     @Override
     @Transactional(rollbackFor = Exception.class)
-    public boolean deleteDroolsRule(Long ruleId, String ruleName) {
+    public boolean deleteDroolsRule(Long ruleId) {
         DroolsRule rule = getById(ruleId);
         if (null != rule) {
-            droolsManager.deleteDroolsRule(rule.getKieBaseName(), rule.getKiePackageName(), ruleName);
+            droolsManager.deleteDroolsRule(rule.getKieBaseName(), rule.getKiePackageName(), rule.getRuleName());
             return removeById(rule.getId());
         }
         return false;

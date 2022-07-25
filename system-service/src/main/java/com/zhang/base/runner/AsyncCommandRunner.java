@@ -29,12 +29,12 @@ public class AsyncCommandRunner {
     public void runAsync() {
         log.info("AsyncCommandRunner---------开始执行异步初始化任务");
 
-        log.info("---------加载Drools规则 => Redis ----------start");
+        log.info("---------加载Drools规则 => ----------start");
         List<DroolsRule> rules = droolsRuleService.list();
         for (DroolsRule rule : rules) {
             droolsManager.addOrUpdateRule(rule);
         }
-        log.info("---------加载Drools规则 => Redis ----------end");
+        log.info("---------加载Drools规则 => ----------end");
     }
 
 }

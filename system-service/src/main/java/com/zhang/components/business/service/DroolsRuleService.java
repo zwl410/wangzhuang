@@ -34,5 +34,5 @@ public interface DroolsRuleService extends IService<DroolsRule> {
     /**
      * 删除drools规则
      */
-    boolean deleteDroolsRule(Long ruleId, String ruleName);
+    boolean deleteDroolsRule(Long ruleId);
 }

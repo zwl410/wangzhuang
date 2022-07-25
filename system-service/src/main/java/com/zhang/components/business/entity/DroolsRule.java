@@ -37,6 +37,11 @@ public class DroolsRule extends BaseEntity implements Serializable {
     private String ruleNo;
 
     /**
+     * 规则名称
+     */
+    private String ruleName;
+
+    /**
      * kbase的名字
      */
     private String kieBaseName;

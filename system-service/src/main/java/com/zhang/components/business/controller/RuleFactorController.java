@@ -24,14 +24,14 @@ public class RuleFactorController {
     private final DroolsManager droolsManager;
 
     @ApiOperation("温度测试")
-    @PostMapping("test")
+    @GetMapping("test")
     public ResponseEntity test(@ApiParam("温度") @RequestParam String value) {
         String result = ruleFactorService.rule(value);
         return ResponseEntity.ok(result);
     }
 
     @ApiOperation("字符测试")
-    @PostMapping("test1")
+    @GetMapping("test1")
     public ResponseEntity test1(@ApiParam("字符") @RequestParam String value) {
         String result = ruleFactorService.rule1(value);
         return ResponseEntity.ok(result);
@@ -59,8 +59,8 @@ public class RuleFactorController {
 
     @ApiOperation("删除规则")
     @PostMapping("deleteRule")
-    public ResponseEntity deleteRule(@ApiParam("规则编号") Long ruleId, @ApiParam("规则名称") String ruleName) {
-        droolsRuleService.deleteDroolsRule(ruleId, ruleName);
+    public ResponseEntity deleteRule(@ApiParam("规则编号") Long ruleId) {
+        droolsRuleService.deleteDroolsRule(ruleId);
         return ResponseEntity.ok("删除成功");
     }
 
